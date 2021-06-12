@@ -53,10 +53,3 @@ def file_cache(cache_dir, load_func = load_pickle, save_func = save_pickle, lru_
             return ret
         return wrapper
     return decorator_file_cache
-
-@file_cache("./cache_butt_is_legs")
-def butt_is_legs(butt, legs):
-    print("Executing function.")
-    return butt == legs
-
-print(butt_is_legs(5,6))
