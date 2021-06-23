@@ -12,4 +12,3 @@ clean:
 
 test:
 	./test.sh
-	pytest

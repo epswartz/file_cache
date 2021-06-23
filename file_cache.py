@@ -59,7 +59,7 @@ def file_cache(cache_dir, save_type=None, load_func = LOAD_FUNCS["pickle"], save
     # TODO single arg for data type that overrides load_func and save_func if it's specified
     # Check that cache_dir exists, create if it does not.
     if not os.path.exists(cache_dir):
-        os.path.mkdir(cache_dir)
+        os.mkdir(cache_dir)
 
     def decorator_file_cache(func):
 
