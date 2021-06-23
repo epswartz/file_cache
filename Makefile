@@ -11,4 +11,5 @@ clean:
 	rm -rf dist
 
 test:
+	./test.sh
 	pytest
