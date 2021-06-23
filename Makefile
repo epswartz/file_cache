@@ -9,3 +9,6 @@ build:
 
 clean:
 	rm -rf dist
+
+test:
+	pytest
