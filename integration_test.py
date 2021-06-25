@@ -53,11 +53,12 @@ def test_object_arg(o):
     exec_count += 1
     return o
 
+
 @file_cache("./cache_dir/test_multi_return")
 def test_multi_return():
     global exec_count
     exec_count += 1
-    return 1,2
+    return 1, 2
 
 
 run_number = int(sys.argv[1])
@@ -74,7 +75,7 @@ elif run_number == 2:  # Second run, execute functions, check return vals and th
     assert test_object_noarg() == 1
     assert test_int_arg(1) == 1
     assert test_object_arg(TestObject(2)) == TestObject(2)
-    a,b = test_multi_return()
+    a, b = test_multi_return()
     assert a == 1
     assert b == 2
     assert exec_count == 0
