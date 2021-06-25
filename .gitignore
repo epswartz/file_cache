@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Testing cache dir
+cache_dir
+
 # C extensions
 *.so
 
