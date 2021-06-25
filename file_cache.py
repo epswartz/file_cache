@@ -57,20 +57,15 @@ def file_cache(cache_dir,
         load_func = LOAD_FUNCS[save_type]
         save_func = SAVE_FUNCS[save_type]
 
-    # TODO Handle multiple returns. Is this just a tuple, is it already done?
-    # TODO single arg for data type that overrides load_func and save_func if it's specified
     # Check that cache_dir exists, create if it does not.
     if not os.path.exists(cache_dir):
         os.mkdir(cache_dir)
 
     def decorator_file_cache(func):
 
-        @functools.lru_cache(
-            lru_cache_size
-        )  # TODO replace with my own dictionary-based LRU cache class? Not exactly sure how this is going to work.
+        @functools.lru_cache(lru_cache_size)
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
-            in_memory_cache = dict()
 
             # TODO I wish this didn't depend on repr, but I can't seem to get reproducible hashing without it.
             str_key = repr(args) + repr(kwargs)
