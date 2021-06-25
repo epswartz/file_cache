@@ -12,3 +12,6 @@ clean:
 
 test:
 	./test.sh
+
+format:
+	yapf *.py --style google -i

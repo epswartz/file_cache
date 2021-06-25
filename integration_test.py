@@ -9,7 +9,8 @@ exec_count = 0
 
 class TestObject:
     """Object that exists only to be saved and loaded. Stores a basic value to make sure that it isn't corrupted."""
-    def __init__(self,n):
+
+    def __init__(self, n):
         self.n = n
 
     def __eq__(self, other):
@@ -24,11 +25,13 @@ class TestObject:
     def __hash__(self):
         return hash(repr(self))
 
+
 @file_cache("./test_int_noarg")
 def test_int_noarg():
     global exec_count
     exec_count += 1
     return 1
+
 
 @file_cache("./test_object_noarg")
 def test_object_noarg():
@@ -43,6 +46,7 @@ def test_int_arg(x):
     exec_count += 1
     return x
 
+
 @file_cache("./test_object_arg")
 def test_object_arg(o):
     global exec_count
@@ -52,13 +56,13 @@ def test_object_arg(o):
 
 run_number = int(sys.argv[1])
 
-if run_number == 1: # First run, execute functions and populate file cache.
+if run_number == 1:  # First run, execute functions and populate file cache.
     test_int_noarg()
     test_object_noarg()
     test_int_arg(1)
     test_object_arg(TestObject(2))
     assert exec_count == 4
-elif run_number == 2: # Second run, execute functions, check return vals and that there were no executions.
+elif run_number == 2:  # Second run, execute functions, check return vals and that there were no executions.
     assert test_int_noarg() == 1
     assert test_object_noarg() == 1
     assert test_int_arg(1) == 1

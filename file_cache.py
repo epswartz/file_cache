@@ -3,6 +3,7 @@ import os
 import pickle
 import hashlib
 
+
 def load_pickle(filepath):
     """Load a pickle at the given filepath and return the contents.
 
@@ -28,15 +29,16 @@ def save_pickle(obj, filepath):
         pickle.dump(obj, f)
 
 
-LOAD_FUNCS = {
-    "pickle":load_pickle
-}
+LOAD_FUNCS = {"pickle": load_pickle}
 
-SAVE_FUNCS = {
-    "pickle":save_pickle
-}
+SAVE_FUNCS = {"pickle": save_pickle}
 
-def file_cache(cache_dir, save_type=None, load_func = LOAD_FUNCS["pickle"], save_func = SAVE_FUNCS["pickle"], lru_cache_size = 128):
+
+def file_cache(cache_dir,
+               save_type=None,
+               load_func=LOAD_FUNCS["pickle"],
+               save_func=SAVE_FUNCS["pickle"],
+               lru_cache_size=128):
     """Decorator used to cache the output of a function on disk.
 
     Args:
@@ -63,7 +65,9 @@ def file_cache(cache_dir, save_type=None, load_func = LOAD_FUNCS["pickle"], save
 
     def decorator_file_cache(func):
 
-        @functools.lru_cache(lru_cache_size) # TODO replace with my own dictionary-based LRU cache class? Not exactly sure how this is going to work.
+        @functools.lru_cache(
+            lru_cache_size
+        )  # TODO replace with my own dictionary-based LRU cache class? Not exactly sure how this is going to work.
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
             in_memory_cache = dict()
@@ -79,5 +83,7 @@ def file_cache(cache_dir, save_type=None, load_func = LOAD_FUNCS["pickle"], save
             ret = func(*args, **kwargs)
             save_func(ret, file_key)
             return ret
+
         return wrapper
+
     return decorator_file_cache
