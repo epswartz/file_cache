@@ -13,8 +13,8 @@ jobs:
         with:
           python-version: 3.9
       - name: Install twine
-      run: python -m pip install twine --user
+        run: python -m pip install twine --user
       - name: Build package
-      run: python setup.py sdist
+        run: python setup.py sdist
       - name: Upload to PyPI
-      twine upload dist/* -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}
+        run: twine upload dist/* -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}
