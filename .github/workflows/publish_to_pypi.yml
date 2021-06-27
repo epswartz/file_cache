@@ -8,6 +8,7 @@ jobs:
   build-and-publish:
     name: Publish package on PyPI
     runs-on: ubuntu-18.04
+    environment: PyPI_Deployment
     steps:
     - name: Checkout @ main
       uses: actions/checkout@v2
