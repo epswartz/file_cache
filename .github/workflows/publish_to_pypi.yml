@@ -20,6 +20,8 @@ jobs:
     - name: ls
       run: ls
     - name: Build package
-      run: python setup.py sdist
+      working-directory: ./
+      run: python ../setup.py sdist
     - name: Upload to PyPI
+      working-directory: ./
       run: twine upload dist/* -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}
